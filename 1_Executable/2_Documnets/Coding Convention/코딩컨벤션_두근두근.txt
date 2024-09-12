@@ -1,0 +1,48 @@
+*전역변수 최대한 쓰지말기
+* &참조자 쓰지 않기
+* 구조체 쓰지 않기
+
+
+함수 : MoveChar(int _x, int _y)
+변수 : moveChar
+클래스 :  MoveChar
+포인터 : pMoveChar
+bool : isMoveChar
+
+변수 -> 생성자&소멸자 -> 함수
+
+class InputManager : public TSingleton<InputManager>
+{
+	// 변수영역
+public:
+
+
+private:
+	int Key;						//KeyCodeReturn 반환 변수
+
+	// 키코드
+	int select;						
+	int up, down, left, right;
+
+	bool keyState[256];				// keydown을 위한 변수
+	bool keyUp[256];				// keyup을 위한 변수
+
+	// 함수영역
+	// 생성자
+public:
+	InputManager();
+	~InputManager();
+
+public:
+	bool GetKey(KEYCODE k);			//유니티와 동일
+	bool GetKeyDown(KEYCODE k);
+	bool GetKeyUp(KEYCODE k);
+
+
+	bool SetKeyStateFalse(int k);	// keyState를 모두 false로 변경
+	bool KeyMapping(); // 미구현
+
+private:
+	int KeyCodeReturn(KEYCODE k);	// KEYCODE의 실제 코드값 반환 함수
+
+};
